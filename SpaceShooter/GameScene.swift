@@ -1,5 +1,6 @@
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -17,6 +18,9 @@ var aliens = ["alien", "alien2", "alien3"]
     let alienCategory:UInt32 = 0x1 << 1
     let bulletCategory:UInt32 = 0x1 << 0
 
+    let motionManager = CMMotionManager()
+    var xAccelerate:CGFloat = 0
+    
     override func didMove(to view: SKView) {
        starfield = SKEmitterNode(fileNamed: "Starfield")
         starfield.position = CGPoint(x: 0, y: 1472)
@@ -44,6 +48,57 @@ var aliens = ["alien", "alien2", "alien3"]
         self.addChild(scoreLabel)
 
         gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
+        
+        motionManager.accelerometerUpdateInterval = 0.2
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data: CMAccelerometerData?, error: Error?) in
+            if let accelerometerData = data {
+                let acceleration = accelerometerData.acceleration
+                self.xAccelerate = CGFloat(acceleration.x) * 0.75 + self.xAccelerate * 0.25
+            }
+        }
+    }
+  
+    override func didSimulatePhysics() {
+        player.position.x += xAccelerate * 50
+        
+        if player.position.x < -350 {
+            player.position  = CGPoint(x: 350, y: player.position.y)
+        }else if player.position.x >  350 {
+            player.position  = CGPoint(x: -350, y: player.position.y)
+        }
+    }
+    
+    func didBegin(_ contact: SKPhysicsContact) {
+        var alienBody:SKPhysicsBody
+        var bulletBody:SKPhysicsBody
+        
+        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask{
+            bulletBody = contact.bodyA
+            alienBody = contact.bodyB
+        }else{
+            bulletBody = contact.bodyB
+            alienBody = contact.bodyA
+        }
+        
+        if (alienBody.categoryBitMask & alienCategory) != 0 && (bulletBody.categoryBitMask & bulletCategory) != 0 {
+       collisionElements(bulletNode: bulletBody.node as! SKSpriteNode, alienNode: alienBody.node as! SKSpriteNode)
+        }
+    }
+    
+    func collisionElements(bulletNode:SKSpriteNode, alienNode:SKSpriteNode) {
+      let explosion = SKEmitterNode(fileNamed: "Vzriv")
+        explosion?.position = alienNode.position
+        self.addChild(explosion!)
+        
+        self.run(SKAction.playSoundFileNamed("vzriv.mp3", waitForCompletion: false))
+        
+        bulletNode.removeFromParent()
+        alienNode.removeFromParent()
+        
+        self.run(SKAction.wait(forDuration: 2)) {
+            explosion?.removeFromParent()
+        }
+        score  += 5
     }
     
     @objc func addAlien() {
@@ -109,3 +164,4 @@ var aliens = ["alien", "alien2", "alien3"]
         // Called before each frame is rendered
     }
 }
+
