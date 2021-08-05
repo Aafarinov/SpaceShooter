@@ -21,6 +21,8 @@
 		AB17910E26ADC99B00BFD112 /* Starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB17910C26ADC99B00BFD112 /* Starfield.sks */; };
 		AB17910F26ADC99B00BFD112 /* Vzriv.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB17910D26ADC99B00BFD112 /* Vzriv.sks */; };
 		AB17911126ADD39E00BFD112 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = AB17911026ADD39E00BFD112 /* .gitignore */; };
+		AB9F97E026B1B7F90005C084 /* MainMenu.sks in Resources */ = {isa = PBXBuildFile; fileRef = AB9F97DF26B1B7F90005C084 /* MainMenu.sks */; };
+		AB9F97E226B1BBDB0005C084 /* MainMenue.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB9F97E126B1BBDB0005C084 /* MainMenue.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		AB17910C26ADC99B00BFD112 /* Starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Starfield.sks; sourceTree = "<group>"; };
 		AB17910D26ADC99B00BFD112 /* Vzriv.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Vzriv.sks; sourceTree = "<group>"; };
 		AB17911026ADD39E00BFD112 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		AB9F97DF26B1B7F90005C084 /* MainMenu.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MainMenu.sks; sourceTree = "<group>"; };
+		AB9F97E126B1BBDB0005C084 /* MainMenue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenue.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +104,8 @@
 				AB1790E626ADBFED00BFD112 /* GameScene.swift */,
 				AB1790E826ADBFED00BFD112 /* GameViewController.swift */,
 				AB1790EA26ADBFED00BFD112 /* Main.storyboard */,
+				AB9F97DF26B1B7F90005C084 /* MainMenu.sks */,
+				AB9F97E126B1BBDB0005C084 /* MainMenue.swift */,
 				AB1790ED26ADBFEE00BFD112 /* Assets.xcassets */,
 				AB17910626ADC89500BFD112 /* bullet.mp3 */,
 				AB17910826ADC8A000BFD112 /* vzriv.mp3 */,
@@ -204,6 +210,7 @@
 				AB17911126ADD39E00BFD112 /* .gitignore in Resources */,
 				AB1790EC26ADBFED00BFD112 /* Main.storyboard in Resources */,
 				AB1790E326ADBFED00BFD112 /* GameScene.sks in Resources */,
+				AB9F97E026B1B7F90005C084 /* MainMenu.sks in Resources */,
 				AB17910E26ADC99B00BFD112 /* Starfield.sks in Resources */,
 				AB17910926ADC8A100BFD112 /* vzriv.mp3 in Resources */,
 				AB17910F26ADC99B00BFD112 /* Vzriv.sks in Resources */,
@@ -229,6 +236,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AB1790E726ADBFED00BFD112 /* GameScene.swift in Sources */,
+				AB9F97E226B1BBDB0005C084 /* MainMenue.swift in Sources */,
 				AB1790E926ADBFED00BFD112 /* GameViewController.swift in Sources */,
 				AB1790E126ADBFED00BFD112 /* AppDelegate.swift in Sources */,
 			);
